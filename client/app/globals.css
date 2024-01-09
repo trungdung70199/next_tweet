@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --link-rgb: 11, 102, 167;
+}
+
+a {
+  color: rgb(var(--link-rgb));
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+
+}
