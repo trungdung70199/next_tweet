@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SiLoopback } from 'react-icons/si';
 
 const Navbar = () => {
     console.log("Navbar!!!!")
@@ -6,6 +7,7 @@ const Navbar = () => {
         <nav>
             <div className='flex flex-wrap items-center mx-auto py-4'>
                 <Link href="/" className='me-3'>
+                    <SiLoopback/>
                     <span className='self-center text-2xl font-semibold'>Next Tweet</span>
                 </Link>
 
