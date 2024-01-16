@@ -1,8 +1,8 @@
 const Input = () => {
-    return(
+    return (
         <input type="text"
             className="
-                my-2 border-2
+                my-2 border-2 
                 border-gray-200
                 rounded
                 w-full
@@ -13,4 +13,3 @@ const Input = () => {
         />
     );
 }
-
