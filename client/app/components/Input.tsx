@@ -1,8 +1,16 @@
-const Input = () => {
+
+interface InputProps {
+    type: string;
+    value?: string;
+    placeholder?: string;
+}
+
+const Input = ({type, value, placeholder} : InputProps) => {
     return (
-        <input type="text"
-            className="
-                my-2 border-2 
+        <input type={type}
+            value={value}
+            placeholder={placeholder}
+            className="my-2 border-2 
                 border-gray-200
                 rounded
                 w-full
@@ -13,3 +21,5 @@ const Input = () => {
         />
     );
 }
+
+export default Input;
