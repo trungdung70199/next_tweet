@@ -1,7 +1,7 @@
 "use client"
 
 import { FaUser } from "react-icons/fa";
-// import Input from "../../components/Input";
+import Input from "../../components/Input";
 
 const RegistPage = () => {
     return (
@@ -12,9 +12,9 @@ const RegistPage = () => {
             </h1>
 
             <div>
-                {/* <Input type="text" placeholder="Your Name" />
+                <Input type="text" placeholder="Your Name" />
                 <Input type="text" placeholder="Email" />
-                <Input type="password" placeholder="******" /> */}
+                <Input type="password" placeholder="******" />
             </div>
         </div>
     );
