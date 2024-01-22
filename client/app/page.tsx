@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { getTweets } from "./services/TweetService"
+import { getTweets } from "./services/TweetServices"
 import { User, testUser } from "./models/User"
 import { Tweet } from "./models/Tweet"
 import TweetList from "./components/tweet/TweetList"
