@@ -1,5 +1,5 @@
 import { User, testUser } from "@/app/models/User";
-import { postTweet } from "@/app/services/TweetServices";
+import { postTweet } from "@/app/services/TweetService";
 import { useState } from "react";
 
 const TweetForm = () => {
