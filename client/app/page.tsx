@@ -1,14 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { getTweets } from "./services/TweetService"
+import { getTweets, postTweet } from "./services/TweetService"
 import { User, testUser } from "./models/User"
-import { Tweet } from "./models/Tweet"
+import { Tweet, initialTweet } from "./models/Tweet"
 import TweetList from "./components/tweet/TweetList"
+import TweetForm from "./components/tweet/TweetForm"
 
 export default function Home() {
   const [user, setUser] = useState<User>(testUser)
   const [tweets, setTweets] = useState<Tweet[]>([])
+  const [newTweet, setNewTweet] = useState<Tweet>(initialTweet);
 
   useEffect(() => {
     (async () => {
@@ -22,13 +24,19 @@ export default function Home() {
     })();
   }, [user])
 
+  const onPostTweet = async (message: string) => {
+    if (user?.accessToken) {
+      const data = await postTweet(user, message)
+      data.user = user;
+      setNewTweet(data);
+    }
+  }
 
   return (
     <div>
-      <textarea className="resize-none w-full h-24 border rounded-md p-2" placeholder="今なにしてる？"></textarea>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Send</button>
+      <TweetForm onPostTweet={onPostTweet} />
 
-      <TweetList initialTweets={tweets} />
+      <TweetList initialTweets={tweets} newTweet={newTweet} />
     </div>
   )
 }
