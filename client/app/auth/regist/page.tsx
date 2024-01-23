@@ -4,21 +4,35 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import Input from "@/app/components/Input";
+import { registUser } from "@/app/services/UserService";
+import { useRouter } from "next/navigation";
 
 const RegistPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    //ルーター作成
+    const router = useRouter();
+
     const regist = async () => {
         console.log(name, email, password)
+        // APIにデータ送信（ユーザ登録）
+        const result = await registUser({name, email, password});
+        if (result.error) {
+            console.log(result.error)
+            // エラー表示
+        } else {
+            // リダイレクト
+            router.replace('/');
+        }
     }
 
     return (
         <div className="mx-auto w-1/3">
             <h1 className="my-2 p-1 flex justify-center text-2xl font-bold">
                 <FaUser className="mt-2 me-2" />
-                Sign up
+                Register
             </h1>
 
             <div>
