@@ -5,17 +5,30 @@ import Input from "@/app/components/Input";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useState } from "react";
 import { signIn } from "@/app/services/UserService";
+import { useRouter } from "next/navigation";
+import FormError from "@/app/components/FormError";
 
 const LoginPage = () => {
+    const router = useRouter();
+
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState({ auth: "" })
 
     const auth = async () => {
         console.log(email, password)
         // APIにデータ送信
-        const token = "";
-        if (token) {
-            // リダイレクト
+        const result = await signIn({ email, password })
+        // エラー設定
+        if (!result || result.error) {
+            setError(result?.error || { auth: "Internal Error!" })
+            console.log(result?.error)
+        } else {
+            const token = result?.access_token;
+            if (token) {
+                //トップページにリダイレクト
+                router.replace('/');
+            }
         }
     }
 
@@ -37,6 +50,7 @@ const LoginPage = () => {
                     onChange={setPassword}
                     placeholder="******"
                 />
+                <FormError message={error?.auth} />
             </div>
 
             <div>
