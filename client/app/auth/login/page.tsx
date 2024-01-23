@@ -3,22 +3,46 @@
 import Link from "next/link";
 import Input from "@/app/components/Input";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useState } from "react";
+import { signIn } from "@/app/services/UserService";
 
 const LoginPage = () => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    const auth = async () => {
+        console.log(email, password)
+        // APIにデータ送信
+        const token = "";
+        if (token) {
+            // リダイレクト
+        }
+    }
+
     return (
         <div className="mx-auto w-1/3">
             <h1 className="my-2 p-1 flex justify-center text-2xl font-bold">
-                <RiLockPasswordFill className="mt-2 me-2"/>
+                <RiLockPasswordFill className="mt-2 me-2" />
                 Sign in
             </h1>
 
             <div>
-                <Input type="text" placeholder="Email" />
-                <Input type="password" placeholder="******" />
+                <Input
+                    type="text"
+                    onChange={setEmail}
+                    placeholder="Email"
+                />
+                <Input
+                    type="password"
+                    onChange={setPassword}
+                    placeholder="******"
+                />
             </div>
 
             <div>
-                <button className="
+                <button
+                    onClick={auth}
+                    className="
                             w-full
                           bg-blue-500 hover:bg-blue-700
                           text-white font-bold 
