@@ -6,7 +6,7 @@ export interface User {
     created_at: string;
     updated_at: string;
     accessToken: string;
-}
+};
 
 export interface PostUser {
     name: string;
@@ -27,7 +27,7 @@ export const initialUser: User = {
 export const testUser: User = {
     accessToken: process.env.NEXT_PUBLIC_TEST_USER_ACCESS_TOKEN || '',
     id: Number(process.env.NEXT_PUBLIC_TEST_USER_ID),
-    name: process.env.NEXT_PUBLIC_TEST_USER_NAME || '',
+    name: '',
     email: '',
     password: '',
     created_at: '',
