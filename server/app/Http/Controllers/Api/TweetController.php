@@ -14,7 +14,11 @@ class TweetController extends Controller
     {
         //「tweets」テーブルのレコードをすべて取得
         // SELECT * FROM tweets;
-        $tweets = Tweet::get();
+        // SELECT * FROM tweets JOIN users ON users.id = tweets.user_id ORDER BY created_at DESC LIMIT 25;
+        $tweets = Tweet::with('user')
+            ->orderBy('created_at', 'DESC')
+            ->limit(25)
+            ->get();
         // JSONでレスポンス
         return response()->json($tweets);
     }
