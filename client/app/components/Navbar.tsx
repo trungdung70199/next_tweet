@@ -10,15 +10,14 @@ import UserContext from '../context/UserContext';
 import { initialUser } from '../models/User';
 
 const Navbar = () => {
+    const router = useRouter();
     const { user, setUser } = useContext(UserContext);
 
-    const router = useRouter();
     const signOut = async () => {
+        // ユーザ情報削除
+        await setUser(initialUser)
         // Cookie削除
         await removeAccessToken();
-        // ユーザ情報削除
-        setUser(initialUser)
-
         // ログインページにリダイレクト
         router.replace('/auth/login');
     }
@@ -34,7 +33,7 @@ const Navbar = () => {
 
             <div className="text-sm md:flex-grow">
                 {
-                    (user?.id > 0) ?
+                    (user == undefined || user?.id > 0) ?
                         <>
                             <NavbarLink href="/user/profile" label="Profile" />
                             <NavbarLink href="#" label="Sign out" onClick={signOut} />
