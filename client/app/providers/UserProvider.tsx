@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import UserContext from "../context/UserContext.";
+import UserContext from "../context/UserContext";
 import { initialUser } from "../models/User";
 import Cookies from "js-cookie";
 import { getUser } from "../services/UserService";
