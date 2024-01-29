@@ -11,7 +11,6 @@ import UserContext from "@/app/context/UserContext";
 
 const LoginPage = () => {
     const { setUser } = useContext(UserContext);
-
     const router = useRouter();
 
     const [email, setEmail] = useState<string>("");
@@ -38,13 +37,17 @@ const LoginPage = () => {
             console.log(result?.error)
         } else {
             const token = result?.access_token;
-            if (token) {
-                //Cookie にアクセストークンを保存
-                updateAccessToken(token);
+            if (!token) return;
 
-                //トップページにリダイレクト
-                router.replace('/');
-            }
+            //Cookie にアクセストークンを保存
+            await updateAccessToken(token);
+
+            //ユーザ設定
+            const user = await getUser(token);
+            await setUser(user)
+
+            //トップページにリダイレクト
+            router.replace('/');
         }
     }
 
