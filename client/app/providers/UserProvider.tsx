@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { initialUser } from "../models/User";
 import Cookies from "js-cookie";
-import { getUser } from "../services/UserService";
+import { getUser, updateAccessToken } from "../services/UserService";
 
 export default function UserProvider({
     children,
@@ -24,7 +24,7 @@ export default function UserProvider({
     }, [])
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{user, setUser}}>
             {children}
         </UserContext.Provider>
     )
